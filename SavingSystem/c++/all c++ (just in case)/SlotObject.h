@@ -10,6 +10,10 @@
 
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnSlotDeleted, USlotObject*, slotObject);
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnSlotUpdated, USlotObject*, slotObject);
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnSlotCreated, USlotObject*, slotObject);
 /**
  * 
  */
@@ -21,8 +25,13 @@ class SAVINGSYSTEMTESTING_API USlotObject : public UObject
 public:
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "SlotObject")
-	FOnSlotDeleted OnSlotDeleted;
+		FOnSlotDeleted OnSlotDeleted;
 
+	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "SlotObject")
+		FOnSlotUpdated OnSlotUpdated;
+
+	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "SlotObject")
+		FOnSlotCreated OnSlotCreated;
 
 	UPROPERTY(BlueprintReadOnly, Category = "SlotObject", Meta = (ExposeOnSpawn = "True"))
 	FSaveMetadata SaveMetaData = {};
