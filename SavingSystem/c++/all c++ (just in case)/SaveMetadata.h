@@ -12,11 +12,15 @@ struct FSaveMetadata
 {
 	GENERATED_BODY()
 
-		//name of the save slot
-		UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
+	//name of the save slot
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
 		FString Slotname;
 
 	//date the slot was saved
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
 		FDateTime Date;
+
+	//get the last level that was saved
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
+		FName CurrentLevel;
 };
