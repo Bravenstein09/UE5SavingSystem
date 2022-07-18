@@ -193,3 +193,18 @@ TArray<FSaveMetadata> USaveManager::GetAllSaveMetadata()
 
 	return metadata;
 }
+
+void USaveManager::SetCurrentLevel(const FName& slot)
+{
+	//Update the metadata file with the new level
+	USaveGameMetadata* saveGameMetadata = Cast<USaveGameMetadata>(UGameplayStatics::LoadGameFromSlot(kMetadataSaveSlot, 0));
+	FSaveMetadata& saveMetadata = saveGameMetadata->SavedGamesMetadata.FindOrAdd(CurrentSaveSlot);
+
+	saveMetadata.CurrentLevel = slot;
+
+	// save the changes to the metadata file
+	UGameplayStatics::SaveGameToSlot(saveGameMetadata, kMetadataSaveSlot, 0);
+
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Cyan, "CurrentLevelSet " + CurrentSaveSlot);
+}
