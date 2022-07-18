@@ -58,4 +58,7 @@ public:
 	//gets all the saved games
 	UFUNCTION(BlueprintPure, Category = "Saving and Loading")
 		static TArray<FSaveMetadata> GetAllSaveMetadata();
+		
+	UFUNCTION(BlueprintCallable, Category = "Saving and Loading")
+		static void SetCurrentLevel(const FName& levelName);
 };
